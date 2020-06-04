@@ -19,6 +19,34 @@ export async function initialiseCategoryAndChannels(manager: Discord.GuildChanne
   }
   currentManager = (await setupVoiceChannels(currentManager)) ?? currentManager;
   currentManager = (await setupTextChannels(currentManager)) ?? currentManager;
+  const readMeChannel = await currentManager.create('read-me', {
+    type: 'text',
+    parent: existingCategory,
+    bitrate: environment.default_bitrate * 1000,
+  });
+  await readMeChannel.setPosition(0);
+  await readMeChannel.overwritePermissions([
+    { id: currentManager.guild.id, deny: 'SEND_MESSAGES' },
+  ]);
+
+  const response = new Discord.MessageEmbed()
+    .addField(
+      'Practice Room Bot',
+      `All voice channels named "Practice-Room" can be locked, so that others remain muted while you practice`,
+    )
+    .addField(
+      'How to lock room',
+      "When no one is in a practice room and you'd like to occupy it, use the command `p!lock` to mute everyone except for you within your particular practice room\n\n" +
+        "Please remember to type `p!unlock` as soon as you're finished\n\n" +
+        "Keep in mind that when you join a locked practice room, it will automatically server mute you unless you're the host of that particular practice room",
+    )
+    .addField(
+      "Don't want to practice solo?",
+      'If you want to chill out or jam, go to the JAM ROOMS category',
+    );
+  readMeChannel.send(response);
+  currentManager = readMeChannel.guild.channels;
+  return currentManager;
 }
 
 async function setupVoiceChannels(manager: Discord.GuildChannelManager) {

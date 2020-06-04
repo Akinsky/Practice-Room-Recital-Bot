@@ -1,4 +1,4 @@
-import Discord from 'discord.js';
+import Discord, { TextChannel } from 'discord.js';
 import { environment } from '../../environment';
 
 export function getPracticeCategory(channelManager: Discord.GuildChannelManager) {

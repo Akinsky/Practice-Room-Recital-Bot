@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
-import { isAdmin, replyToMessage } from '../utils/memberUtils';
 import { initialiseCategoryAndChannels } from '../utils/discordUtils/initialisation';
+import { isAdmin, replyToMessage } from '../utils/memberUtils';
 
 export async function setup(message: Discord.Message, discord: Discord.Client) {
   if (!message.member) {

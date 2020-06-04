@@ -10,7 +10,7 @@
     "url": "https://github.com/rgbdelta/Practice-Room-Recital-Bot.git"
   },
   "dependencies": {
-    "discord.js": "^12.1.1",
+    "discord.js": "^12.2.0",
     "humanize-duration": "^3.21.0",
     "moment": "^2.22.2"
   },
