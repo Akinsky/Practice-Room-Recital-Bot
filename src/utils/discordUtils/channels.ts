@@ -25,9 +25,9 @@ export async function lockChannel(
 
   // Update voice and text channel names
   const matchingTextChannel = getMatchingTextChannel(manager, voiceChannel.name);
-  const roomName = getLockedChannelName(member);
-  await voiceChannel.setName(roomName);
-  await matchingTextChannel?.setName(roomName);
+  const newRoomName = getLockedChannelName(member);
+  await voiceChannel.setName(newRoomName);
+  await matchingTextChannel?.setName(newRoomName);
 }
 
 export async function unlockChannel(
